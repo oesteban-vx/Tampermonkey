@@ -27,13 +27,30 @@ const stringHashCode = str => {
     var host = location.hostname;
     var hash = stringHashCode(host)
     hash &= 0xffffff
-    hash |= 0xe0e0e0
+    hash |= 0xc0c0e0
     GM_addStyle("* { background-color: #" + hash.toString(16) + "; } ");
 
-    var farm = /prodcloudweb-prod[^-]*-(.*?)[\.-]/.exec(host)[1]
-    document.title = farm
     // http://prodcloudweb-prod-indexing-ue1.us-east-1.elasticbeanstalk.com/tasks/show
     // http://prodcloudweb-production-publishing-ue1.us-east-1.elasticbeanstalk.com/secured/workunits/workunit/n32w97-us-tx-fortworth-2020_n32w97-us-tx-fortworth-2020__PD_OGG/1090
     // http://prodcloudweb-prod-citizen.us-west-2.elasticbeanstalk.com/tasks/show
-    // Your code here...
+    var farm = /prodcloudweb-prod[^-]*-(.*?)[\.-]/.exec(host)[1]
+
+    var title = farm
+
+    // http://prodcloudweb-production-reproj-ue1.us-east-1.elasticbeanstalk.com/secured/workunits/workunit/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG/1
+    var WU = /\/workunits\/workunit\/(.*)\/(\d+)/.exec(location.href)
+
+    // http://prodcloudweb-production-reproj-ue1.us-east-1.elasticbeanstalk.com/tasks/task/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG
+    var task = /\/tasks\/task\/(.*)/.exec(location.href)
+
+    if (WU)
+    {
+        title = farm + " / " + WU[2] + " / " + WU[1]
+    }
+    else if (task)
+    {
+        title = farm + " / " + task[1]
+    }
+
+    document.title = title
 })();
