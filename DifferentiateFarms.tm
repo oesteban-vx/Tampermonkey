@@ -11,7 +11,6 @@
 
 // @icon         https://www.google.com/s2/favicons?domain=elasticbeanstalk.com
 // @grant        GM_addStyle
-// @require      file://C/Users/i22225/projects/TamperMonkey/DiffentiateFarms.tm
 // ==/UserScript==
 
 const stringHashCode = str => {
@@ -43,6 +42,9 @@ const stringHashCode = str => {
     // http://prodcloudweb-production-reproj-ue1.us-east-1.elasticbeanstalk.com/tasks/task/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG
     var task = /\/tasks\/task\/(.*)/.exec(location.href)
 
+
+    // http://prodcloudweb-production-idpsreproj-ue1.us-east-1.elasticbeanstalk.com/secured/clients/show
+    var others = /\/secured\/([^/]+)\//.exec(location.href)
     if (WU)
     {
         title = farm + " / " + WU[2] + " / " + WU[1]
@@ -51,6 +53,9 @@ const stringHashCode = str => {
     {
         title = farm + " / " + task[1]
     }
-
+    else if (others)
+    {
+        title = farm + " / " + others[1]
+    }
     document.title = title
 })();
