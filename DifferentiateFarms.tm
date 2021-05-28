@@ -3,13 +3,11 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  Add some differentiation to farms!
-// @author       You
-// @match        http://prodcloudweb-prod*.elasticbeanstalk.com/*
-//  match        http://prodcloudweb-production-publishing-ue1.us-east-1.elasticbeanstalk.com/*
-//  match        http://prodcloudweb-prod-indexing-ue1.us-east-1.elasticbeanstalk.com/*
+// @author       oesteban
+
 // @match        http://*.elasticbeanstalk.com/*
 
-// @icon         https://www.google.com/s2/favicons?domain=elasticbeanstalk.com
+// @icon         http://prodcloudweb-dev.us-west-2.elasticbeanstalk.com/resources/images/amsgeo_logo.ico
 // @grant        GM_addStyle
 // ==/UserScript==
 
@@ -29,33 +27,52 @@ const stringHashCode = str => {
     hash |= 0xc0c0e0
     GM_addStyle("* { background-color: #" + hash.toString(16) + "; } ");
 
-    // http://prodcloudweb-prod-indexing-ue1.us-east-1.elasticbeanstalk.com/tasks/show
-    // http://prodcloudweb-production-publishing-ue1.us-east-1.elasticbeanstalk.com/secured/workunits/workunit/n32w97-us-tx-fortworth-2020_n32w97-us-tx-fortworth-2020__PD_OGG/1090
-    // http://prodcloudweb-prod-citizen.us-west-2.elasticbeanstalk.com/tasks/show
-    var farm = /prodcloudweb-prod[^-]*-(.*?)[\.-]/.exec(host)[1]
+    var farm = ""
 
-    var title = farm
+    var regexes = [
+        // http://prodcloudweb-prod-indexing-ue1.us-east-1.elasticbeanstalk.com/tasks/show
+        // http://prodcloudweb-production-publishing-ue1.us-east-1.elasticbeanstalk.com/secured/workunits/workunit/n32w97-us-tx-fortworth-2020_n32w97-us-tx-fortworth-2020__PD_OGG/1090
+        // http://prodcloudweb-prod-citizen.us-west-2.elasticbeanstalk.com/tasks/show
+        /prodcloudweb-prod[^-]*-(.*?)[\.-]/,
 
-    // http://prodcloudweb-production-reproj-ue1.us-east-1.elasticbeanstalk.com/secured/workunits/workunit/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG/1
-    var WU = /\/workunits\/workunit\/(.*)\/(\d+)/.exec(location.href)
+        // http://prodcloudweb-dev.us-west-2.elasticbeanstalk.com/tasks/show
+        /prodcloudweb-([^\.]+)/,
+        ]
 
-    // http://prodcloudweb-production-reproj-ue1.us-east-1.elasticbeanstalk.com/tasks/task/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG
-    var task = /\/tasks\/task\/(.*)/.exec(location.href)
-
-
-    // http://prodcloudweb-production-idpsreproj-ue1.us-east-1.elasticbeanstalk.com/secured/clients/show
-    var others = /\/secured\/([^/]+)\//.exec(location.href)
-    if (WU)
+    for(var i = 0, size = regexes.length; i < size ; i++)
     {
-        title = farm + " / " + WU[2] + " / " + WU[1]
+        var r = regexes[i].exec(host)
+        if (r) {
+            farm = r[1]
+            break
+        }
     }
-    else if (task)
+
+    if (farm != "")
     {
-        title = farm + " / " + task[1]
+        var title = farm
+
+        // .../secured/workunits/workunit/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG/1
+        var WU = /\/workunits\/workunit\/(.*)\/(\d+)/.exec(location.href)
+
+        // .../tasks/task/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG
+        var task = /\/tasks\/task\/(.*)/.exec(location.href)
+
+        // .../secured/clients/show
+        var others = /\/secured\/([^/]+)\//.exec(location.href)
+
+        if (WU)
+        {
+            title = farm + " / " + WU[2] + " / " + WU[1]
+        }
+        else if (task)
+        {
+            title = farm + " / " + task[1]
+        }
+        else if (others)
+        {
+            title = farm + " / " + others[1]
+        }
+        document.title = title
     }
-    else if (others)
-    {
-        title = farm + " / " + others[1]
-    }
-    document.title = title
 })();
