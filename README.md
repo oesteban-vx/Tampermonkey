@@ -24,3 +24,6 @@ in your history.
 
 ![Sample screenshot](screenshots/BrowserTabs.png)
 ![Sample screenshot](screenshots/history.png)
+
+#### `IDPS.js`
+Add information about the content to the title (browser tab)
