@@ -7,6 +7,11 @@ the fly.
 You can use many user written scripts, avaliable on public repositories, but
 you can also write your own, maybe simpler, but useful nonetheless.
 
+### How to install the scripts
+First, if you don't have it, install [TamperMonkey](https://www.tampermonkey.net/).
+Then click on its icon ![Tampermonkey icon](https://tampermonkey.freetls.fastly.net/favicon.ico)
+and `Add new script`. Then copy and paste the code there, and `Save`.
+
 ### Our scripts
 
 #### `DifferentiateFarms.js`
