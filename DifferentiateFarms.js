@@ -56,7 +56,10 @@ const stringHashCode = str => {
         var WU = /\/workunits\/workunit\/(.*)\/(\d+)/.exec(location.href)
 
         // .../tasks/task/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG
-        var task = /\/tasks\/task\/(.*)/.exec(location.href)
+        var task = /\/tasks\/task\/(.*?)[?\/]/.exec(location.href)
+
+        // .../tasks/task/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG
+        var create_task = /\/tasks\/createTask/.exec(location.href)
 
         // .../secured/clients/show
         var others = /\/secured\/([^/]+)\//.exec(location.href)
@@ -72,6 +75,10 @@ const stringHashCode = str => {
         else if (others)
         {
             title = farm + " / " + others[1]
+        }
+        else if (create_task)
+        {
+            title = farm + " / Create task"
         }
         document.title = title
     }
