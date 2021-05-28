@@ -23,3 +23,4 @@ This is nice just to know which tab you want to open, or to go back and forth
 in your history.
 
 ![Sample screenshot](screenshots/BrowserTabs.png)
+![Sample screenshot](screenshots/history.png)
