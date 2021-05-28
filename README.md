@@ -9,7 +9,7 @@ you can also write your own, maybe simpler, but useful nonetheless.
 
 ### Our scripts
 
-#### `DifferentiateFarms.tm`
+#### `DifferentiateFarms.js`
 This gets some data from the farms' URL and then
 * sets a different background color for each of the farms
 * puts in the title (browser tab) the farm name, task and workunit
