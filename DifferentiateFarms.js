@@ -1,9 +1,11 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Add some differentiation to farms!
 // @author       oesteban
+// @updateURL   https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
+// @downloadURL   https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
 
 // @match        http://*.elasticbeanstalk.com/*
 
@@ -19,12 +21,20 @@ const stringHashCode = str => {
   return hash
 }
 
+var farm_abbrevs = {
+    "publishing" : "pub",
+    "reproj" : "rep",
+    "idpsreproj" : "i-rep",
+    "indexing" : "idx",
+    "auxiliary" : "aux",
+};
+
 (function() {
     'use strict';
     var host = location.hostname;
     var hash = stringHashCode(host)
     hash &= 0xffffff
-    hash |= 0xc0c0e0
+    hash |= 0xc0c0c0
     GM_addStyle("* { background-color: #" + hash.toString(16) + "; } ");
 
     var farm = ""
@@ -44,6 +54,8 @@ const stringHashCode = str => {
         var r = regexes[i].exec(host)
         if (r) {
             farm = r[1]
+            if (farm_abbrevs[farm])
+                farm = farm_abbrevs[farm]
             break
         }
     }
@@ -56,7 +68,7 @@ const stringHashCode = str => {
         var WU = /\/workunits\/workunit\/(.*)\/(\d+)/.exec(location.href)
 
         // .../tasks/task/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG
-        var task = /\/tasks\/task\/(.*?)[?\/]/.exec(location.href)
+        var task = /\/tasks\/task\/(.*?)([?\/]|$)/.exec(location.href)
 
         // .../tasks/task/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG
         var create_task = /\/tasks\/createTask/.exec(location.href)
