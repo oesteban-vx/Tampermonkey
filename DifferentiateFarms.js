@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  Add some differentiation to farms!
 // @author       oesteban
-// @updateURL   https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
-// @downloadURL   https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
+// @updateURL    https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
+// @downloadURL  https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
 
 // @match        http://*.elasticbeanstalk.com/*
 
@@ -23,10 +23,13 @@ const stringHashCode = str => {
 
 var farm_abbrevs = {
     "publishing" : "pub",
-    "reproj" : "rep",
+    "reproj"     : "rep",
+    "reproj2"    : "rep2",
+    "reproj3"    : "rep3",
+    "reproj4"    : "rep4",
     "idpsreproj" : "i-rep",
-    "indexing" : "idx",
-    "auxiliary" : "aux",
+    "indexing"   : "idx",
+    "auxiliary"  : "aux",
 };
 
 (function() {
