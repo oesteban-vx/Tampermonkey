@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  Add some differentiation to farms!
 // @author       oesteban
 // @updateURL    https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
@@ -22,14 +22,16 @@ const stringHashCode = str => {
 }
 
 var farm_abbrevs = {
-    "publishing" : "pub",
-    "reproj"     : "rep",
-    "reproj2"    : "rep2",
-    "reproj3"    : "rep3",
-    "reproj4"    : "rep4",
-    "idpsreproj" : "i-rep",
-    "indexing"   : "idx",
-    "auxiliary"  : "aux",
+    "publishing" : ["pub", "eec694"], // orange
+    "reproj"     : ["rep", "b7c6f4"], // blue
+    "reproj2"    : ["rep2", "c7f9f4"],
+    "reproj3"    : ["rep3", "8bfbf0"],
+    "reproj4"    : ["rep4", "8bebfb"],
+    "idpsreproj" : ["i-rep", "e2f9d8"], // green
+    "indexing"   : ["idx", "f2e99f"], // yellow
+    "auxiliary"  : ["aux", "ee9696"], //red
+    "qc"         : ["qc", "fda3e6"], //pink
+    "dxm"        : ["dxm", "cfd2d6"], //gray
 };
 
 (function() {
@@ -38,7 +40,7 @@ var farm_abbrevs = {
     var hash = stringHashCode(host)
     hash &= 0xffffff
     hash |= 0xc0c0c0
-    GM_addStyle("* { background-color: #" + hash.toString(16) + "; } ");
+    var color = hash.toString(16)
 
     var farm = ""
 
@@ -57,11 +59,20 @@ var farm_abbrevs = {
         var r = regexes[i].exec(host)
         if (r) {
             farm = r[1]
-            if (farm_abbrevs[farm])
-                farm = farm_abbrevs[farm]
+            var item = farm_abbrevs[farm]
+            if (item)
+            {
+                // alert("item 0 = " +item[0]);
+                farm = item[0]
+                if (item[1]) {
+                    color = item[1]
+                }
+            }
             break
         }
     }
+
+    GM_addStyle("* { background-color: #" + color + "; } ");
 
     if (farm != "")
     {
