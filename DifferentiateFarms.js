@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.5
+// @version      0.6
 // @description  Add some differentiation to farms!
 // @author       oesteban
 // @updateURL    https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
@@ -23,7 +23,7 @@ const stringHashCode = str => {
 
 var farm_abbrevs = {
     "publishing" : ["pub",   "ffe6c8"], // orange
-    "reproj"     : ["rep",   "b7c6f4"], // blue
+    "reproj"     : ["rep1",  "b7c6f4"], // blue
     "reproj2"    : ["rep2",  "c7f9f4"],
     "reproj3"    : ["rep3",  "8bfbf0"],
     "reproj4"    : ["rep4",  "8bebfb"],
