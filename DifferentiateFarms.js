@@ -76,7 +76,7 @@ var farm_abbrevs = {
 
     if (farm != "")
     {
-        var title = farm
+        var title = ""
 
         // .../secured/workunits/workunit/n35w84-us-tn-etowah-2019_SPHERICALORTHO_OGGWFI_OHLG/1
         var WU = /\/workunits\/workunit\/(.*)\/(\d+)/.exec(location.href)
@@ -92,24 +92,29 @@ var farm_abbrevs = {
 
         if (WU)
         {
-            title = farm + " / " + WU[2] + " / " + WU[1]
+            title = WU[1] + " / " + WU[2]
         }
         else if (task)
         {
-            title = farm + " / " + task[1]
+            title = ask[1]
         }
         else if (others)
         {
-            title = farm + " / " + others[1]
+            title = thers[1]
         }
         else if (create_task)
         {
-            title = farm + " / Create task"
+            title = "reate task"
         }
         else if (/loginPage/.exec(location.href))
         {
-            title = farm + " / Login"
+            title = "ogin"
         }
-        document.title = title
+        if (title != "")
+        {
+            title = title + " /"
+        }
+
+        document.title = title + farm
     }
 })();
