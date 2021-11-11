@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.6
+// @version      0.7
 // @description  Add some differentiation to farms!
 // @author       oesteban
 // @updateURL    https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
@@ -96,19 +96,19 @@ var farm_abbrevs = {
         }
         else if (task)
         {
-            title = ask[1]
+            title = task[1]
         }
         else if (others)
         {
-            title = thers[1]
+            title = others[1]
         }
         else if (create_task)
         {
-            title = "reate task"
+            title = "Create task"
         }
         else if (/loginPage/.exec(location.href))
         {
-            title = "ogin"
+            title = "Login"
         }
         if (title != "")
         {
