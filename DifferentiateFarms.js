@@ -23,8 +23,8 @@ const stringHashCode = str => {
 
 var farm_abbrevs = {
     "publishing" : ["pub",   "ffe6c8"], // orange
-    "reproj"     : ["rep1",  "b7c6f4"], // blue
-    "reproj2"    : ["rep2",  "c7f9f4"],
+    "reproj"     : ["rep1",  "fff1c8"],
+    "reproj2"    : ["rep2",  "c7f9f4"], // blue
     "reproj3"    : ["rep3",  "8bfbf0"],
     "reproj4"    : ["rep4",  "8bebfb"],
     "idpsreproj" : ["i-rep", "e2f9d8"], // green
