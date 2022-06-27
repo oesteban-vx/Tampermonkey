@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.8
+// @version      0.9
 // @description  Add some differentiation to farms!
 // @author       oesteban
 // @updateURL    https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
@@ -29,7 +29,7 @@ var farm_abbrevs = {
     "reproj4"    : ["rep4",  "8bebfb"],
     "idpsreproj" : ["i-rep", "e2f9d8"], // green
     "indexing"   : ["idx",   "f2e99f"], // yellow
-    "auxiliary"  : ["aux",   "ee9696"], // red
+    "auxiliary"  : ["aux",   "eed6d6"], // red
     "qc"         : ["qc",    "fda3e6"], // pink
     "dxm"        : ["dxm",   "cfd2d6"], // gray
 };
