@@ -8,6 +8,7 @@
 // @downloadURL  https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
 
 // @match        http://*.elasticbeanstalk.com/*
+// @match        http://qy-farm-001/*
 
 // @icon         http://prodcloudweb-dev.us-west-2.elasticbeanstalk.com/resources/images/amsgeo_logo.ico
 // @grant        GM_addStyle
@@ -32,6 +33,8 @@ var farm_abbrevs = {
     "auxiliary"  : ["aux",   "eed6d6"], // red
     "qc"         : ["qc",    "fda3e6"], // pink
     "dxm"        : ["dxm",   "cfd2d6"], // gray
+    "qy-farm-001": ["qy1",   "80cfff"], // darkish-blue
+    "qy-farm-002": ["qy1",   "a0cfff"],
 };
 
 (function() {
@@ -52,6 +55,10 @@ var farm_abbrevs = {
 
         // http://prodcloudweb-dev.us-west-2.elasticbeanstalk.com/tasks/show
         /prodcloudweb-([^\.]+)/,
+
+        // http://qy-farm-001:8080
+        /(qy-farm-\d+)/,
+
         ]
 
     for(var i = 0, size = regexes.length; i < size ; i++)
