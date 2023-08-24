@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.9
+// @version      0.11
 // @description  Add some differentiation to farms!
 // @author       oesteban
 // @updateURL    https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
@@ -92,6 +92,7 @@ var farm_abbrevs = {
     }
 
     GM_addStyle("* { background-color: #" + color + "; } ");
+    GM.addStyle(".navbar-brand {font-size: 30px;}");
 
     if (farm != "")
     {
@@ -135,5 +136,10 @@ var farm_abbrevs = {
         }
 
         document.title = title + farm
+
+        var elements = document.getElementsByClassName("navbar-brand");
+        if (elements) {
+            elements[0].text = farm.toUpperCase()
+        }
     }
 })();
