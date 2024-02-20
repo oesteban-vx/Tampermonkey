@@ -8,6 +8,7 @@
 // @downloadURL  https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
 
 // @match        http://*.elasticbeanstalk.com/*
+// @match        http://*.web.farm.vexcelgroup.com/*
 // @include      http://qy-farm-*
 
 // @icon         http://prodcloudweb-dev.us-west-2.elasticbeanstalk.com/resources/images/amsgeo_logo.ico
@@ -54,6 +55,9 @@ var farm_abbrevs = {
         // http://prodcloudweb-dev.us-west-2.elasticbeanstalk.com/tasks/show
         /prodcloudweb-([^\.]+)/,
 
+        // http://reproj1.web.farm.vexcelgroup.com
+        /([^\.]+)\.web.farm.vexcelgroup.com/,
+
         // http://qy-farm-001:8080
         /(qy-farm-\d+)/,
 
@@ -85,11 +89,12 @@ var farm_abbrevs = {
         {
             var qy_number = parseInt(r[1], 10)
             color = parseInt(base_color,16)
-            color += 0x100   * qy_number / 100 * 10
+            color += 0x00100 * qy_number / 100 * 10
             color += 0x10000 * qy_number % 100 * 10
             color = "#" + color.toString(16)
         }
     }
+
 
     GM_addStyle("* { background-color: #" + color + "; } ");
     GM.addStyle(".navbar-brand {font-size: 30px;}");
@@ -143,3 +148,4 @@ var farm_abbrevs = {
         }
     }
 })();
+
