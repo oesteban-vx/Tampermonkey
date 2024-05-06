@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.11
+// @version      0.12
 // @description  Add some differentiation to farms!
 // @author       oesteban
 // @updateURL    https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
