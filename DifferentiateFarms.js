@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.12
+// @version      0.13
 // @description  Add some differentiation to farms!
 // @author       oesteban
 // @updateURL    https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
@@ -11,7 +11,7 @@
 // @match        http://*.web.farm.vexcelgroup.com/*
 // @include      http://qy-farm-*
 
-// @icon         http://prodcloudweb-dev.us-west-2.elasticbeanstalk.com/resources/images/amsgeo_logo.ico
+// @icon         http://qy-farm-101:8080/resources/images/amsgeo_logo.ico
 // @grant        GM_addStyle
 // ==/UserScript==
 
@@ -26,6 +26,7 @@ const stringHashCode = str => {
 var farm_abbrevs = {
     "publishing" : ["pub",   "ffe6b0"], // orange
     "reproj"     : ["rep1",  "fff1b8"],
+    "reproj1"    : ["rep1",  "fff1b8"],
     "reproj2"    : ["rep2",  "fff1e0"],
     "reproj3"    : ["rep3",  "8bfbf0"], // blue
     "reproj4"    : ["rep4",  "8bebfb"],
