@@ -36,6 +36,8 @@ var farm_abbrevs = {
     "auxiliary"  : ["aux",   "eed6d6"], // red
     "qc"         : ["qc",    "fda3e6"], // pink
     "dxm"        : ["dxm",   "cfd2d6"], // gray
+    "qy-farm-"   : ["qy-",   "c2e0e0"], // darkish-blue
+    "qy-mlfarm-" : ["qy-ml-","c2f0e0"], // same, a bit greener
 };
 
 (function() {
@@ -61,7 +63,7 @@ var farm_abbrevs = {
         /([^\.]+)\.web.farm.vexcelgroup.com/,
 
         // http://qy-farm-001:8080
-        // /(qy-(?:ml)?farm-\d+)/,
+        /(qy-(?:ml)?farm-)/,
 
         ]
 
@@ -83,21 +85,18 @@ var farm_abbrevs = {
         }
     }
 
-    if (farm == "")
+    r = /(qy-(?:ml)?farm-(\d+))/.exec(host)
+    if (r)
     {
-        var base_color = "c2e0e0" // darkish-blue
-        r = /(qy-(?:ml)?farm-(\d+))/.exec(host)
         if (r)
         {
+            var base_color = color
             farm = r[1]
             var qy_number = parseInt(r[2], 10)
             color = parseInt(base_color, 16)
             color += 0x00001 * Math.floor(qy_number / 100)
             color += 0x00100 * (qy_number % 100)
 
-            if (/mlfarm/.exec(host)) {
-                color |= 0x00f000
-            }
             color = color.toString(16)
         }
     }
