@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.13
+// @version      0.14
 // @description  Add some differentiation to farms!
 // @author       oesteban
 // @updateURL    https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
@@ -10,6 +10,7 @@
 // @match        http://*.elasticbeanstalk.com/*
 // @match        http://*.web.farm.vexcelgroup.com/*
 // @include      http://qy-farm-*
+// @include      http://qy-mlfarm-*
 
 // @icon         http://qy-farm-101:8080/resources/images/amsgeo_logo.ico
 // @grant        GM_addStyle
@@ -60,7 +61,7 @@ var farm_abbrevs = {
         /([^\.]+)\.web.farm.vexcelgroup.com/,
 
         // http://qy-farm-001:8080
-        /(qy-farm-\d+)/,
+        // /(qy-(?:ml)?farm-\d+)/,
 
         ]
 
@@ -84,15 +85,20 @@ var farm_abbrevs = {
 
     if (farm == "")
     {
-        var base_color = "80cfff" // darkish-blue
-        r = /qy-farm-(\d+)/.exec(host)
+        var base_color = "c2e0e0" // darkish-blue
+        r = /(qy-(?:ml)?farm-(\d+))/.exec(host)
         if (r)
         {
-            var qy_number = parseInt(r[1], 10)
-            color = parseInt(base_color,16)
-            color += 0x00100 * qy_number / 100 * 10
-            color += 0x10000 * qy_number % 100 * 10
-            color = "#" + color.toString(16)
+            farm = r[1]
+            var qy_number = parseInt(r[2], 10)
+            color = parseInt(base_color, 16)
+            color += 0x00001 * Math.floor(qy_number / 100)
+            color += 0x00100 * (qy_number % 100)
+
+            if (/mlfarm/.exec(host)) {
+                color |= 0x00f000
+            }
+            color = color.toString(16)
         }
     }
 
