@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Differentiate farms
 // @namespace    http://tampermonkey.net/
-// @version      0.14
+// @version      0.15
 // @description  Add some differentiation to farms!
 // @author       oesteban
 // @updateURL    https://raw.githubusercontent.com/oesteban-vx/Tampermonkey/main/DifferentiateFarms.js
@@ -38,6 +38,7 @@ var farm_abbrevs = {
     "dxm"        : ["dxm",   "cfd2d6"], // gray
     "qy-farm-"   : ["qy-",   "c2e0e0"], // darkish-blue
     "qy-mlfarm-" : ["qy-ml-","c2f0e0"], // same, a bit greener
+    "primary"    : ["farm-primary", "ffd3e6"], // light pink
 };
 
 (function() {
@@ -65,7 +66,9 @@ var farm_abbrevs = {
         // http://qy-farm-001:8080
         /(qy-(?:ml)?farm-)/,
 
-        ]
+        // http://farm-primary-web.eba-p5252cht.us-east-1.elasticbeanstalk.com
+        /farm-(.*?)-web/,
+    ]
 
     for(var i = 0, size = regexes.length; i < size ; i++)
     {
@@ -154,4 +157,3 @@ var farm_abbrevs = {
         }
     }
 })();
-
